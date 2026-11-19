@@ -1,32 +1,34 @@
-package com.example.restservice
+package com.example.restservice;
 
-import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.web.servlet.client.RestTestClient
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SpringBootTest
-@AutoConfigureRestTestClient
-class GreetingControllerTests {
+public class Employee {
 
-  @Test
-  fun noParamGreetingShouldReturnDefaultMessage(@Autowired restTestClient: RestTestClient) {
-    restTestClient.get().uri("/greeting")
-      .exchange()
-      .expectStatus().isOk()
-      .expectBody()
-      .jsonPath("$.content").isEqualTo("Hello, World!")
-  }
+    private String employee_id;
+    private String first_name;
+    private String last_name;
+    private String email;
+    private String title;
 
-  @Test
-  fun paramGreetingShouldReturnTailoredMessage(@Autowired restTestClient: RestTestClient) {
-    restTestClient.get()
-      .uri { it.path("/greeting").queryParam("name", "Spring Community").build() }
-      .exchange()
-      .expectStatus().isOk()
-      .expectBody()
-      .jsonPath("$.content").isEqualTo("Hello, Spring Community!")
-  }
+    public Employee(String employee_id, String first_name, String last_name,
+                    String email, String title) {
+        this.employee_id = employee_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.title = title;
+    }
 
+    @JsonProperty("employee_id")
+    public String getEmployee_id() { return employee_id; }
+
+    @JsonProperty("first_name")
+    public String getFirst_name() { return first_name; }
+
+    @JsonProperty("last_name")
+    public String getLast_name() { return last_name; }
+
+    public String getEmail() { return email; }
+
+    public String getTitle() { return title; }
 }

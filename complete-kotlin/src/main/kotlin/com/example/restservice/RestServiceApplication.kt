@@ -1,11 +1,12 @@
-package com.example.restservice
+package com.example.restservice;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-class RestServiceApplication
+public class RestServiceApplication {
 
-fun main(args: Array<String>) {
-  runApplication<RestServiceApplication>(*args)
+    public static void main(String[] args) {
+        SpringApplication.run(RestServiceApplication.class, args);
+    }
 }
